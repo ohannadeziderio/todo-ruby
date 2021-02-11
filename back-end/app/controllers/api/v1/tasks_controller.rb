@@ -34,8 +34,20 @@ module Api
 
                 render json: {status: 'SUCCESS', message: 'Deleted task', data: task}, status: :ok
             end
-            
+
+            # Update a task
+            def update 
+                task = Task.find(params[:id])
+                
+                if task.update(task_params)
+                    render json: {status: 'SUCCESS', message: 'Updated task', data: task}, status: :ok
+                else
+                    render json: {status: 'ERROR', message: 'Task not updated', data: task.errors}, status: :unprocessable_entity
+                end
+            end
+
             # Params accepted
+            private
             def task_params
                 params.permit(:title, :description, :day)
             end

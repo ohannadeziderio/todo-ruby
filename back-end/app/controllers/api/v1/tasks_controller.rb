@@ -21,7 +21,7 @@ module Api
                 if task.save
                     render json: {status: 'SUCCESS', message: 'Added task', data: task}, status: :ok
                 else
-                    render json: {status: 'ERROR', message: 'Task not added', data: task.erros}, status: :unprocessable_entity
+                    render json: {status: 'ERROR', message: 'Task not added', data: task.errors}, status: :unprocessable_entity
                 end
             end
             
